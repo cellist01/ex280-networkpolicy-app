@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  DATABASE_SERVICE_NAME: bXlzcWw=
+  MEMORY_LIMIT: NTEyTWk=
+  MYSQL_DATABASE: dXNlcmRi
+  MYSQL_PASSWORD: cGFzc3dvcmQ=
+  MYSQL_ROOT_PASSWORD: cGFzc3dvcmQ=
+  MYSQL_USER: bXRw
+  MYSQL_VERSION: OC4wLWVsOA==
+  NAMESPACE: b3BlbnNoaWZ0
+  VOLUME_CAPACITY: MTBHaQ==
+kind: Secret
+metadata:
+  name: mysql-persistent-parameters-qghfx
+type: Opaque

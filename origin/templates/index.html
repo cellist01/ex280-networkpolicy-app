@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+</head>
+<body>
+    <h1>User Information</h1>
+    <form action="/add_user" method="POST">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="birth_date">Birth Date:</label><br>
+        <input type="date" id="birth_date" name="birth_date" required><br>
+        <label for="family_relation">Family Relation:</label><br>
+        <input type="text" id="family_relation" name="family_relation" required><br>
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Registered Users</h2>
+    <ul>
+        {% for user in users %}
+        <li>{{ user.username }} - {{ user.email }} - {{ user.birth_date }} - {{ user.family_relation }} - {{ user.address }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
