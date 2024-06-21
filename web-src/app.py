@@ -1,16 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
-from flask import Flask, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+import threading
+import time
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@mysql.database.svc.cluster.local:3306/userdb'  
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@mysql.database.svc.cluster.local:3306/userdb'
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -24,6 +19,19 @@ class User(db.Model):
 # 테이블 생성
 with app.app_context():
     db.create_all()
+
+def check_db_connection():
+    while True:
+        try:
+            db.session.execute('SELECT 1')
+            print("Database connection is active.")
+        except Exception as e:
+            print(f"Database connection error: {str(e)}")
+        time.sleep(2)  # 2초마다 반복
+
+# 백그라운드 스레드 시작
+check_thread = threading.Thread(target=check_db_connection)
+check_thread.start()
 
 @app.route('/')
 def index():
