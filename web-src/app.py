@@ -24,7 +24,7 @@ def check_db_connection():
     while True:
         try:
             with app.app_context():
-                db.session.execute('SHOW DATABASE;')
+                db.session.execute('SHOW DATABASES;')
                 print("Database connection is active.")
         except Exception as e:
             print(f"Database connection error: {str(e)}")
