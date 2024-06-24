@@ -20,18 +20,8 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
-def check_db_connection():
-    while True:
-        try:
-            with app.app_context():
-                db.session.execute('SHOW DATABASES;')
-                print("Database connection is active.")
-        except Exception as e:
-            print(f"Database connection error: {str(e)}")
-        time.sleep(2)  # 2초마다 반복
 
 # 백그라운드 스레드 시작
-check_thread = threading.Thread(target=check_db_connection)
 check_thread.daemon = True
 check_thread.start()
 
