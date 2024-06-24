@@ -23,14 +23,16 @@ with app.app_context():
 def check_db_connection():
     while True:
         try:
-            db.session.execute('SELECT 1')
-            print("Database connection is active.")
+            with app.app_context():
+                db.session.execute('SELECT 1')
+                print("Database connection is active.")
         except Exception as e:
             print(f"Database connection error: {str(e)}")
         time.sleep(2)  # 2초마다 반복
 
 # 백그라운드 스레드 시작
 check_thread = threading.Thread(target=check_db_connection)
+check_thread.daemon = True
 check_thread.start()
 
 @app.route('/')
@@ -54,3 +56,4 @@ def add_user():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8080)
+
