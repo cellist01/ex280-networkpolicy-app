@@ -8,6 +8,6 @@ spec:
     protocol: TCP
     targetPort: 3306
   selector:
-    name: mysql
+    network.openshift.io/policy-group: database
   sessionAffinity: None
   type: ClusterIP
