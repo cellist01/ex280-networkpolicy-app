@@ -7,9 +7,6 @@ spec:
   template:
     spec:
       containers:
-      - name: git-clone
-        image:  registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:66f219b4d54a41b945cb5715ecd1fbb5d25431cf8dad4b06914a4cdc65b298cc
-        command : ['git', 'clone', 'https://github.com/cellist01/ex280-networkpolicy-app.git']
       - name: build
         image: 'openshift/origin-cli:latest'
         command: ['oc', 'start-build', 'web-buildconfig', '-n', 'checker']
