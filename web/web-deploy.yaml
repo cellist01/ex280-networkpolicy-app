@@ -8,8 +8,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: web
-      version: v1
+      app: web-mysql
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -21,8 +20,7 @@ spec:
         sidecar.istio.io/inject: "true"
       creationTimestamp: null
       labels:
-        app: web
-        version: v1
+        app: web-mysql
     spec:
       containers:
       - image: image-registry.openshift-image-registry.svc:5000/checker/web:v1
